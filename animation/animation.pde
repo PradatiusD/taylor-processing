@@ -3,7 +3,6 @@
 HCanvas canvas;
 HDrawablePool pool;
 HColorPool colors;
-//HPixelColorist colors;
 
 void setup() {
 size(640,640,P3D);
@@ -11,47 +10,44 @@ size(640,640,P3D);
 	H.init(this).background(#000000).autoClear(true).use3D(true);
 	smooth();
 
-colors = new HColorPool()
-    .add(#08756A)
-    .add(#509921)
-    .add(#CBC934)
-    .add(#1B68F5)
-    .add(#37A0F3)
-    .add(#6C0F07)
-    .add(#D22F12)
-    .add(#FD8200)
-    .add(#DE4084)
-    .add(#DB77A7)
-    .add(#8B2E99)
-;
-
-	//colors = new HPixelColorist("gradient.jpg");
+    colors = new HColorPool()
+        .add(#08756A)
+        .add(#509921)
+        .add(#CBC934)
+        .add(#1B68F5)
+        .add(#37A0F3)
+        .add(#6C0F07)
+        .add(#D22F12)
+        .add(#FD8200)
+        .add(#DE4084)
+        .add(#DB77A7)
+        .add(#8B2E99)
+    ;
 
 	canvas = new HCanvas(P3D).autoClear(true);
 	H.add(canvas);
 
 	pool = new HDrawablePool(1000);
-pool.autoAddToStage()
-	//pool.autoParent(canvas)
+    pool.autoAddToStage()
 		.add(
-			new HRect()
-			.rounding(10)
+			new HShape("umbrella.svg")
 		)
-
 		.onCreate(
 			new HCallback() {
 				public void run(Object obj) {
 					int i = pool.currentIndex();
 
-					HDrawable d = (HDrawable) obj;
+					HShape d = (HShape) obj;
 					d
 						.noStroke()
 						.size( (int)random(40,80) , (int)random(60,80) )
 						.loc(  (int)random(width), (int)random(height) )
-						.anchorAt(H.CENTER)
+                        .fill(colors.getColor())
+						.anchorAt(H.CENTER);
 
+                    d.randomColors(colors);
 
-
+                    d
 						.obj("xo", new HOscillator()
 							.target(d)
 							.property(H.X)
@@ -148,7 +144,6 @@ void draw() {
 		d.loc( d.x(), d.y() - random(0.25,1), d.z() );
 
 		d.noStroke();
-		//d.fill(colors.getColor(d.x(), d.y()));
 
 		// if the z axis hits this range, change fill to light yellow
 		if (d.z() > -10 && d.z() < 10){

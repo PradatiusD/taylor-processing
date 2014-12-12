@@ -1,0 +1,22 @@
+{
+  "name": "Taylor Processing",
+  "version": "0.1.0",
+  "authors": [
+    "PradatiusD <danielprada2012@gmail.com>"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "resolutions": {
+    "hypejs": "staging"
+  },
+  "dependencies": {
+    "hypejs": "staging"
+  },
+  "homepage": "https://github.com/PradatiusD/taylor-processing"
+}
