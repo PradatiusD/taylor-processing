@@ -1,3 +1,4 @@
 .DS_Store
 **/.DS.Store
 animation/build-tmp
+bower_components
